@@ -1,4 +1,4 @@
-package ir.maktab.personreposiitory;
+package ir.maktab.connection;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
