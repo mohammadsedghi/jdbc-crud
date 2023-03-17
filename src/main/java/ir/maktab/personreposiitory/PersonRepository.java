@@ -49,6 +49,7 @@ public class PersonRepository {
         person.setFamily(resultSet.getString("family"));
         return person;
     }
+
     public Person[] loadAll() throws Exception {
         final String QUERY1 = "select * from person ";
         Connection connection = JdbcConnection.getConnection();
@@ -71,19 +72,38 @@ public class PersonRepository {
         }
         return persons;
     }
-    public void saveAll(Person[] person) throws  Exception{
+
+    public void saveAll(Person[] person) throws Exception {
         final String QUERY1 = "insert into person( name, family) VALUES (?,?)";
         Connection connection = JdbcConnection.getConnection();
         PreparedStatement statement = connection.prepareStatement(QUERY1);
-        for (int i = 0; i < person.length ; i++) {
+        for (int i = 0; i < person.length; i++) {
             statement.setString(1, person[i].getName());
             statement.setString(2, person[i].getFamily());
-           statement.addBatch();
+            statement.addBatch();
         }
-       statement.executeBatch();
+        statement.executeBatch();
         System.out.println("commit in the database");
     }
+
+    public int save1(Person person) throws SQLException {
+        final String QUERY1 = "insert into person( name, family) VALUES (?,?)";
+
+        Connection connection = JdbcConnection.getConnection();
+        PreparedStatement statement = connection.prepareStatement(QUERY1,Statement.RETURN_GENERATED_KEYS);
+
+        statement.setString(1, person.getName());
+        statement.setString(2, person.getFamily());
+        statement.execute();
+        ResultSet resultSet = statement.getGeneratedKeys();
+        resultSet.next();
+        int id = resultSet.getInt("id");
+        System.out.println("commit in the database");
+
+       return id;
+    }
 }
+
 //connection.prepareStatement(sql,
 //        ResultSet.TYPE_SCROLL_INSENSITIVE,
 //        ResultSet.CONCUR_READ_ONLY);
