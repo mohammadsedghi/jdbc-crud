@@ -11,8 +11,9 @@ public class Main {
         PersonRepository personRepository=new PersonRepository();
         Person person = new Person(1, "ali", "sedghi");
         Person person1 = new Person(2, "arman", "zanbili");
-         personRepository. save(person);
-         personRepository.  save(person1);
+        // personRepository. save(person);
+       //  personRepository.  save(person1);
+         personRepository.select(person);
 
     }
 

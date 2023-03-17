@@ -5,6 +5,7 @@ import ir.maktab.personreposiitory.JdbcConnection;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class PersonRepository {
@@ -37,6 +38,19 @@ public class PersonRepository {
         statement .setInt(1,personId);
         statement.execute();
         System.out.println("delete");
+    }
+    public void select(Person person)throws Exception{
+        final String QUERY1 = "select * from person where id=?";
+        Connection connection = JdbcConnection.getConnection();
+        PreparedStatement statement = connection.prepareStatement(QUERY1);
+        statement .setInt(1,person.getId());
+        ResultSet resultSet=statement.executeQuery();
+        while (resultSet.next()){
+            System.out.println("id : "+resultSet.getInt("id"));
+            System.out.println("name : "+resultSet.getString("name"));
+            System.out.println("family : "+resultSet.getString("family"));
+        }
+
     }
 
 }
