@@ -11,7 +11,7 @@ public class JdbcConnection {
 //    public static final String PASS = "1374";
 public static final String DB_URL = "jdbc:postgresql://localhost/irmaktab";
        public static final String USER = "postgres";
-   public static final String PASS = "mn652183141";
+   public static final String PASS = "mn0652183141";
 //    public static final String DB_URL = "jdbc:postgresql://localhost/irmaktab";
 //    public static final String USER = "postgres";
 //    public static final String PASS = "12345";
