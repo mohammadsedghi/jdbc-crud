@@ -6,7 +6,7 @@ public class Person {
         this.name = name;
         this.family = family;
     }
-
+public Person(){}
   private   int id;
    private String name;
    private String family;
@@ -33,5 +33,14 @@ public class Person {
 
     public void setFamily(String family) {
         this.family = family;
+    }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", family='" + family + '\'' +
+                '}';
     }
 }

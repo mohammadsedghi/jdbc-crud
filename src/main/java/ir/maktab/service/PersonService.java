@@ -1,10 +1,9 @@
 package ir.maktab.service;
-import ir.maktab.personreposiitory.PersonRepository
+import ir.maktab.personreposiitory.PersonRepository;
+import ir.maktab.entity.Person;
 
-import org.example.entity.Person;
-import org.example.repository.PersonRepository;
 
-import java.sql.SQLException;
+
 import java.util.Objects;
 import java.util.regex.Pattern;
 
@@ -13,7 +12,7 @@ public class PersonService {
     private final PersonRepository personRepository = new PersonRepository();
 
     public void save(Person person) throws Exception {
-        if (Pattern.matches("[A-Z][a-z]*",person.getFirstname()) && Pattern.matches("[A-Z][a-z]*",person.getLastname()) ){
+        if (Pattern.matches("[A-Z][a-z]*",person.getName()) && Pattern.matches("[A-Z][a-z]*",person.getFamily()) ){
             personRepository.save(person);
         }else {
             System.out.println("your first character of your firstname and lastname should contain an uppercase and other character of your firstname and lastname should be lowercase");
@@ -21,11 +20,11 @@ public class PersonService {
     }
 
     public void update(Person person , String firstname , String lastname) throws Exception{
-        if (!Objects.equals(person.getFirstname() , firstname) ){
+        if (!Objects.equals(person.getName() , firstname) ){
             System.out.println("test");
             if (Pattern.matches("[A-Z][a-z]*",firstname)){
                 System.out.println("test1");
-                person.setFirstname(firstname);
+                person.setName(firstname);
                 personRepository.update(person);
             }else {
                 System.out.println("your first character of your firstname should contain an uppercase and other character of your firstname should be lowercase");
@@ -34,11 +33,11 @@ public class PersonService {
         }else {
             System.out.println("Your new firstname is the same as the previous one");
         }
-        if (!Objects.equals(person.getLastname() , lastname)){
+        if (!Objects.equals(person.getFamily() , lastname)){
             System.out.println("test2");
             if (Pattern.matches("[A-Z][a-z]*",lastname) ){
                 System.out.println("test3");
-                person.setLastname(lastname);
+                person.setFamily(lastname);
                 personRepository.update(person);
             }else {
                 System.out.println("your first character of your lastname should contain an uppercase and other character of your lastname should be lowercase");
